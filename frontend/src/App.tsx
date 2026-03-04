@@ -1,7 +1,14 @@
-import './App.css'
+/**
+ * App.tsx — NCAA College Basketball Teams
+ * Main React app that displays a list of college basketball teams
+ * loaded from CollegeBasketballTeams.json.
+ */
 
+import './App.css'
+// Import team data from JSON file (Vite bundles this at build time)
 import teamsData from './CollegeBasketballTeams.json'
 
+// Type definition for a single team; matches the shape of each object in the JSON
 type Team = {
   tid: number
   cid: number
@@ -16,6 +23,10 @@ type Team = {
   longitude: number
 }
 
+/**
+ * Heading — intro section at the top of the page.
+ * Welcomes the user and describes what the site shows.
+ */
 function Heading() {
   return (
     <header className="heading">
@@ -25,10 +36,15 @@ function Heading() {
   )
 }
 
+// Props for TeamCard: a single team object to display
 type TeamCardProps = {
   team: Team
 }
 
+/**
+ * TeamCard — displays one team's info in a card.
+ * Shows school name, mascot name, and location (city, state).
+ */
 function TeamCard({ team }: TeamCardProps) {
   return (
     <article className="team-card">
@@ -43,10 +59,15 @@ function TeamCard({ team }: TeamCardProps) {
   )
 }
 
+// Props for TeamList: array of teams to render as cards
 type TeamListProps = {
   teams: Team[]
 }
 
+/**
+ * TeamList — renders a grid of TeamCard components for all teams.
+ * Uses team.tid as the React key for each card.
+ */
 function TeamList({ teams }: TeamListProps) {
   return (
     <section className="team-list">
@@ -57,7 +78,12 @@ function TeamList({ teams }: TeamListProps) {
   )
 }
 
+/**
+ * App — root component.
+ * Loads teams from the JSON and renders Heading plus TeamList.
+ */
 function App() {
+  // Pull the teams array from the imported JSON
   const teams: Team[] = teamsData.teams
 
   return (
